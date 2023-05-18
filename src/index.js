@@ -6,12 +6,18 @@ import { fetchCountries } from './fetchCountries';
 import debounce from 'lodash.debounce';
 import Notiflix from 'notiflix';
 
+/**
+ * get elements
+ */
 const DEBOUNCE_DELAY = 300;
 
 const searchBox = document.getElementById('search-box');
 const countryList = document.querySelector('.country-list');
 const countryInfo = document.querySelector('.country-info');
 
+/**
+ * event on input
+ */
 searchBox.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
 
 function onInput() {
@@ -45,6 +51,9 @@ function onInput() {
     .catch(Notiflix.Notify.failure('Oops, there is no country with that name'));
 }
 
+/**
+ * create markups
+ */
 function createMarkupList(countries) {
   const markupList = countries
     .map(({ name, flags }) => {
