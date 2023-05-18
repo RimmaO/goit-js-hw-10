@@ -1,4 +1,5 @@
 import './css/styles.css';
+import { fetchCountries } from './fetchCountries';
 /**
  * import library
  */
@@ -44,18 +45,6 @@ function onInput() {
     .catch(Notiflix.Notify.failure('Oops, there is no country with that name'));
 }
 
-function fetchCountries(name = '') {
-  const BASE_URL = 'https://restcountries.com/v3.1/name';
-  return fetch(
-    `${BASE_URL}/${name}?fields=name,capital,population,flags,languages`
-  ).then(response => {
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-    return response.json();
-  });
-}
-
 function createMarkupList(countries) {
   const markupList = countries
     .map(({ name, flags }) => {
@@ -74,13 +63,17 @@ function createMarkupInfo(countries) {
   const markupInfo = countries
     .map(({ name, capital, population, flags, languages }) => {
       return `<div class="country-flag">
-        <img src="${flags.svg}" alt="flag" width = 30px height = 50pxclass="country-info-img"  />
+        <img src="${
+          flags.svg
+        }" alt="flag" width = 30px height = 50pxclass="country-info-img"  />
         <p class="country-info-text"> <b>${name.official}</b></p>
       </div>
           <ul class="country-info-list list">
       <li class="country-info-item"><p class="country-info-text">Capital: ${capital}</p></li>
       <li class="country-info-item"><p class="country-info-text">Population: ${population}</p></li>
-      <li class="country-info-item"><p class="country-info-text">Languages: ${languages['ukr']}</p></li>
+      <li class="country-info-item"><p class="country-info-text">Languages: ${Object.values(
+        languages
+      )}</p></li>
     </ul>
       `;
     })
@@ -89,7 +82,8 @@ function createMarkupInfo(countries) {
 }
 
 // 2nd option
+// const BASE_URL = 'https://restcountries.com/v3.1/name';
 // const params = new URLSearchParams({
-//   fields: name,
+//   fields: name,capital,population,flags,languages
 // });
-// return fetch(`${BASE_URL}/all?${params}`);
+// return fetch(`${BASE_URL}/${name}?${params}`);
