@@ -18,3 +18,31 @@ body {
   max-width: 320px;
   margin-bottom: 16px;
 }
+
+/* Add styles */
+
+img {
+  display: block;
+  height: auto;
+}
+
+h2,
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding-left: 0;
+}
+
+.list {
+  list-style: none;
+}
+
+.country-list-item,
+.country-flag {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}

@@ -13,7 +13,7 @@ const countryInfo = document.querySelector('.country-info');
 
 searchBox.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
 
-function onInput(event) {
+function onInput() {
   const name = searchBox.value.trim();
 
   if (name === '') {
@@ -45,7 +45,7 @@ function onInput(event) {
 }
 
 function fetchCountries(name = '') {
-  const BASE_URL = 'https://restcountries.com/v3.1';
+  const BASE_URL = 'https://restcountries.com/v3.1/name';
   return fetch(
     `${BASE_URL}/${name}?fields=name,capital,population,flags,languages`
   ).then(response => {
@@ -61,29 +61,31 @@ function createMarkupList(countries) {
     .map(({ name, flags }) => {
       return `
     <li class="country-list-item">
-      <img src="${flags.svg}" alt="flag" class="country-list-img" />
+      <img src="${flags.svg}" alt="flag" width = 30px height = 50px class="country-list-img" />
       <p class="country-list-text">${name.official}</p>
-    </li>;
+    </li>
   `;
     })
     .join('');
+  return markupList;
 }
 
 function createMarkupInfo(countries) {
   const markupInfo = countries
     .map(({ name, capital, population, flags, languages }) => {
       return `<div class="country-flag">
-        <img src="${flags.svg}" alt="flag" class="country-info-img" />
-        <p class="country-info-text">${name.official}</p>
+        <img src="${flags.svg}" alt="flag" width = 30px height = 50pxclass="country-info-img"  />
+        <p class="country-info-text"> <b>${name.official}</b></p>
       </div>
-          <ul class="country-info-list">
+          <ul class="country-info-list list">
       <li class="country-info-item"><p class="country-info-text">Capital: ${capital}</p></li>
       <li class="country-info-item"><p class="country-info-text">Population: ${population}</p></li>
-      <li class="country-info-item"><p class="country-info-text">Languages: ${languages}</p></li>
+      <li class="country-info-item"><p class="country-info-text">Languages: ${languages['ukr']}</p></li>
     </ul>
       `;
     })
     .join('');
+  return markupInfo;
 }
 
 // 2nd option
