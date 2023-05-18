@@ -7,7 +7,7 @@ import debounce from 'lodash.debounce';
 import Notiflix from 'notiflix';
 
 /**
- * get elements
+ * get HTML elements
  */
 const DEBOUNCE_DELAY = 300;
 
