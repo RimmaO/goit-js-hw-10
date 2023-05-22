@@ -9,8 +9,8 @@
     "sourceType": "module"
   },
   "rules": {
-    // "indent": ["error", 2],
-    // "linebreak-style": ["error", "unix"],
+    "indent": ["error", 2],
+    "linebreak-style": ["error", "LF"],
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
     "no-console": "off"
